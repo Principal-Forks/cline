@@ -1,0 +1,855 @@
+{
+  "vv": {
+    "name": "Cline Architecture",
+    "version": "1.0.0",
+    "nodeTypes": {
+      "Extension": {
+        "description": "VS Code extension entry point and main controller",
+        "icon": "Code",
+        "color": 4
+      },
+      "Core": {
+        "description": "Core business logic and task management",
+        "icon": "Cpu",
+        "color": 4
+      },
+      "WebView": {
+        "description": "React-based UI for chat interface",
+        "icon": "Monitor",
+        "color": 5
+      },
+      "GRPC": {
+        "description": "gRPC communication protocol between extension and webview",
+        "icon": "Network",
+        "color": 2
+      },
+      "Proto": {
+        "description": "Protocol buffer definitions for message types",
+        "icon": "FileText",
+        "color": 3
+      },
+      "ModelProvider": {
+        "description": "AI model provider abstraction layer",
+        "icon": "Bot",
+        "color": 6
+      },
+      "Anthropic": {
+        "description": "Anthropic Claude integration",
+        "icon": "Brain",
+        "color": 6
+      },
+      "OpenAI": {
+        "description": "OpenAI GPT integration",
+        "icon": "Zap",
+        "color": 6
+      },
+      "Gemini": {
+        "description": "Google Gemini integration",
+        "icon": "Sparkles",
+        "color": 6
+      },
+      "ToolExecutor": {
+        "description": "Executes various tools (file operations, browser, etc.)",
+        "icon": "Wrench",
+        "color": 1
+      },
+      "FileManager": {
+        "description": "File system operations and management",
+        "icon": "Folder",
+        "color": 1
+      },
+      "BrowserSession": {
+        "description": "Browser automation and web interaction",
+        "icon": "Globe",
+        "color": 1
+      },
+      "Terminal": {
+        "description": "Command execution and terminal operations",
+        "icon": "Terminal",
+        "color": 1
+      },
+      "MCPServer": {
+        "description": "Model Context Protocol server integration",
+        "icon": "Server",
+        "color": 3
+      },
+      "MCPClient": {
+        "description": "MCP client for external tool connections",
+        "icon": "Plug",
+        "color": 3
+      },
+      "AccountService": {
+        "description": "User account and authentication management",
+        "icon": "User",
+        "color": 2
+      },
+      "TelemetryService": {
+        "description": "Usage analytics and monitoring",
+        "icon": "BarChart3",
+        "color": 2
+      },
+      "ErrorService": {
+        "description": "Error handling and reporting",
+        "icon": "AlertTriangle",
+        "color": 1
+      },
+      "Storage": {
+        "description": "Local data persistence",
+        "icon": "Database",
+        "color": 4
+      },
+      "StateManager": {
+        "description": "Application state management",
+        "icon": "Layers",
+        "color": 4
+      },
+      "GitHub": {
+        "description": "GitHub integration for repositories",
+        "icon": "Github",
+        "color": 5
+      },
+      "VSCodeAPI": {
+        "description": "VS Code extension API",
+        "icon": "Code2",
+        "color": 5
+      },
+      "CLI": {
+        "description": "Command line interface",
+        "icon": "Terminal",
+        "color": 5
+      },
+      "Standalone": {
+        "description": "Standalone runtime environment",
+        "icon": "Package",
+        "color": 5
+      },
+      "BuildSystem": {
+        "description": "Build and compilation system",
+        "icon": "Hammer",
+        "color": 3
+      },
+      "TestFramework": {
+        "description": "Testing infrastructure",
+        "icon": "CheckCircle",
+        "color": 4
+      }
+    },
+    "edgeTypes": {
+      "GRPCConnection": {
+        "description": "gRPC message passing",
+        "style": "solid",
+        "color": "#f97316"
+      },
+      "MessageFlow": {
+        "description": "Data/message flow",
+        "style": "solid",
+        "color": "#06b6d4"
+      },
+      "DependsOn": {
+        "description": "Component dependency",
+        "style": "solid",
+        "color": "#22c55e"
+      },
+      "Uses": {
+        "description": "Uses/Utilizes relationship",
+        "style": "dashed",
+        "color": "#eab308"
+      },
+      "Controls": {
+        "description": "Controls or manages",
+        "style": "solid",
+        "color": "#ef4444"
+      },
+      "Triggers": {
+        "description": "Triggers or initiates",
+        "style": "dotted",
+        "color": "#a855f7"
+      },
+      "ReadsFrom": {
+        "description": "Reads data from",
+        "style": "dashed",
+        "color": "#06b6d4"
+      },
+      "WritesTo": {
+        "description": "Writes data to",
+        "style": "dashed",
+        "color": "#ef4444"
+      },
+      "APICall": {
+        "description": "API call/interface",
+        "style": "solid",
+        "color": "#a855f7"
+      },
+      "EventFlow": {
+        "description": "Event-driven communication",
+        "style": "dotted",
+        "color": "#f97316"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "extension",
+      "type": "text",
+      "x": 1990,
+      "y": 95,
+      "width": 120,
+      "height": 60,
+      "text": "VS Code Extension",
+      "vv": {
+        "nodeType": "Extension",
+        "icon": "Code",
+        "color": 4
+      }
+    },
+    {
+      "id": "core",
+      "type": "text",
+      "x": 2790,
+      "y": 395,
+      "width": 120,
+      "height": 60,
+      "text": "Core Controller",
+      "vv": {
+        "nodeType": "Core",
+        "icon": "Cpu",
+        "color": 4
+      }
+    },
+    {
+      "id": "webview",
+      "type": "text",
+      "x": 110,
+      "y": 995,
+      "width": 80,
+      "height": 60,
+      "text": "Chat UI",
+      "vv": {
+        "nodeType": "WebView",
+        "icon": "Monitor",
+        "color": 5
+      }
+    },
+    {
+      "id": "grpc",
+      "type": "text",
+      "x": 1110,
+      "y": 695,
+      "width": 80,
+      "height": 60,
+      "text": "gRPC Layer",
+      "vv": {
+        "nodeType": "GRPC",
+        "icon": "Network",
+        "color": 2
+      }
+    },
+    {
+      "id": "proto",
+      "type": "text",
+      "x": 500,
+      "y": 995,
+      "width": 100,
+      "height": 60,
+      "text": "Protocol Buffers",
+      "vv": {
+        "nodeType": "Proto",
+        "icon": "FileText",
+        "color": 3
+      }
+    },
+    {
+      "id": "model-provider",
+      "type": "text",
+      "x": 2900,
+      "y": 695,
+      "width": 100,
+      "height": 60,
+      "text": "Model Provider",
+      "vv": {
+        "nodeType": "ModelProvider",
+        "icon": "Bot",
+        "color": 6
+      }
+    },
+    {
+      "id": "anthropic",
+      "type": "text",
+      "x": 3120,
+      "y": 995,
+      "width": 60,
+      "height": 60,
+      "text": "Claude",
+      "vv": {
+        "nodeType": "Anthropic",
+        "icon": "Brain",
+        "color": 6
+      }
+    },
+    {
+      "id": "openai",
+      "type": "text",
+      "x": 2720,
+      "y": 995,
+      "width": 60,
+      "height": 60,
+      "text": "GPT",
+      "vv": {
+        "nodeType": "OpenAI",
+        "icon": "Zap",
+        "color": 6
+      }
+    },
+    {
+      "id": "gemini",
+      "type": "text",
+      "x": 2320,
+      "y": 995,
+      "width": 60,
+      "height": 60,
+      "text": "Gemini",
+      "vv": {
+        "nodeType": "Gemini",
+        "icon": "Sparkles",
+        "color": 6
+      }
+    },
+    {
+      "id": "tool-executor",
+      "type": "text",
+      "x": 2500,
+      "y": 695,
+      "width": 100,
+      "height": 60,
+      "text": "Tool Executor",
+      "vv": {
+        "nodeType": "ToolExecutor",
+        "icon": "Wrench",
+        "color": 1
+      }
+    },
+    {
+      "id": "file-manager",
+      "type": "text",
+      "x": 1905,
+      "y": 995,
+      "width": 90,
+      "height": 60,
+      "text": "File Manager",
+      "vv": {
+        "nodeType": "FileManager",
+        "icon": "Folder",
+        "color": 1
+      }
+    },
+    {
+      "id": "browser-session",
+      "type": "text",
+      "x": 1500,
+      "y": 995,
+      "width": 100,
+      "height": 60,
+      "text": "Browser Session",
+      "vv": {
+        "nodeType": "BrowserSession",
+        "icon": "Globe",
+        "color": 1
+      }
+    },
+    {
+      "id": "terminal",
+      "type": "text",
+      "x": 1115,
+      "y": 995,
+      "width": 70,
+      "height": 60,
+      "text": "Terminal",
+      "vv": {
+        "nodeType": "Terminal",
+        "icon": "Terminal",
+        "color": 1
+      }
+    },
+    {
+      "id": "mcp-server",
+      "type": "text",
+      "x": 2110,
+      "y": 695,
+      "width": 80,
+      "height": 60,
+      "text": "MCP Server",
+      "vv": {
+        "nodeType": "MCPServer",
+        "icon": "Server",
+        "color": 3
+      }
+    },
+    {
+      "id": "mcp-client",
+      "type": "text",
+      "x": 1410,
+      "y": 1295,
+      "width": 80,
+      "height": 60,
+      "text": "MCP Client",
+      "vv": {
+        "nodeType": "MCPClient",
+        "icon": "Plug",
+        "color": 3
+      }
+    },
+    {
+      "id": "account-service",
+      "type": "text",
+      "x": 2400,
+      "y": 395,
+      "width": 100,
+      "height": 60,
+      "text": "Account Service",
+      "vv": {
+        "nodeType": "AccountService",
+        "icon": "User",
+        "color": 2
+      }
+    },
+    {
+      "id": "telemetry-service",
+      "type": "text",
+      "x": 2015,
+      "y": 395,
+      "width": 70,
+      "height": 60,
+      "text": "Telemetry",
+      "vv": {
+        "nodeType": "TelemetryService",
+        "icon": "BarChart3",
+        "color": 2
+      }
+    },
+    {
+      "id": "error-service",
+      "type": "text",
+      "x": 1605,
+      "y": 395,
+      "width": 90,
+      "height": 60,
+      "text": "Error Service",
+      "vv": {
+        "nodeType": "ErrorService",
+        "icon": "AlertTriangle",
+        "color": 1
+      }
+    },
+    {
+      "id": "storage",
+      "type": "text",
+      "x": 1720,
+      "y": 695,
+      "width": 60,
+      "height": 60,
+      "text": "Storage",
+      "vv": {
+        "nodeType": "Storage",
+        "icon": "Database",
+        "color": 4
+      }
+    },
+    {
+      "id": "state-manager",
+      "type": "text",
+      "x": 1800,
+      "y": 1295,
+      "width": 100,
+      "height": 60,
+      "text": "State Manager",
+      "vv": {
+        "nodeType": "StateManager",
+        "icon": "Layers",
+        "color": 4
+      }
+    },
+    {
+      "id": "github",
+      "type": "text",
+      "x": 320,
+      "y": 695,
+      "width": 60,
+      "height": 60,
+      "text": "GitHub",
+      "vv": {
+        "nodeType": "GitHub",
+        "icon": "Github",
+        "color": 5
+      }
+    },
+    {
+      "id": "vscode-api",
+      "type": "text",
+      "x": 1205,
+      "y": 395,
+      "width": 90,
+      "height": 60,
+      "text": "VS Code API",
+      "vv": {
+        "nodeType": "VSCodeAPI",
+        "icon": "Code2",
+        "color": 5
+      }
+    },
+    {
+      "id": "cli",
+      "type": "text",
+      "x": 1230,
+      "y": 95,
+      "width": 40,
+      "height": 60,
+      "text": "CLI",
+      "vv": {
+        "nodeType": "CLI",
+        "icon": "Terminal",
+        "color": 5
+      }
+    },
+    {
+      "id": "standalone",
+      "type": "text",
+      "x": 395,
+      "y": 395,
+      "width": 110,
+      "height": 60,
+      "text": "Standalone Runtime",
+      "vv": {
+        "nodeType": "Standalone",
+        "icon": "Package",
+        "color": 5
+      }
+    },
+    {
+      "id": "build-system",
+      "type": "text",
+      "x": 1605,
+      "y": 95,
+      "width": 90,
+      "height": 60,
+      "text": "Build System",
+      "vv": {
+        "nodeType": "BuildSystem",
+        "icon": "Hammer",
+        "color": 3
+      }
+    },
+    {
+      "id": "test-framework",
+      "type": "text",
+      "x": 800,
+      "y": 395,
+      "width": 100,
+      "height": 60,
+      "text": "Test Framework",
+      "vv": {
+        "nodeType": "TestFramework",
+        "icon": "CheckCircle",
+        "color": 4
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "ext-to-core",
+      "fromNode": "extension",
+      "toNode": "core",
+      "text": "manages",
+      "vv": {
+        "edgeType": "Controls",
+        "style": "solid",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "core-to-grpc",
+      "fromNode": "core",
+      "toNode": "grpc",
+      "text": "gRPC",
+      "vv": {
+        "edgeType": "GRPCConnection",
+        "style": "solid",
+        "color": "#f97316"
+      }
+    },
+    {
+      "id": "grpc-to-webview",
+      "fromNode": "grpc",
+      "toNode": "webview",
+      "text": "messages",
+      "vv": {
+        "edgeType": "GRPCConnection",
+        "style": "solid",
+        "color": "#f97316"
+      }
+    },
+    {
+      "id": "grpc-to-proto",
+      "fromNode": "grpc",
+      "toNode": "proto",
+      "text": "uses schemas",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "core-to-models",
+      "fromNode": "core",
+      "toNode": "model-provider",
+      "text": "AI requests",
+      "vv": {
+        "edgeType": "APICall",
+        "style": "solid",
+        "color": "#a855f7"
+      }
+    },
+    {
+      "id": "model-to-anthropic",
+      "fromNode": "model-provider",
+      "toNode": "anthropic",
+      "text": "integrates",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "model-to-openai",
+      "fromNode": "model-provider",
+      "toNode": "openai",
+      "text": "integrates",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "model-to-gemini",
+      "fromNode": "model-provider",
+      "toNode": "gemini",
+      "text": "integrates",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "core-to-tools",
+      "fromNode": "core",
+      "toNode": "tool-executor",
+      "text": "executes",
+      "vv": {
+        "edgeType": "Controls",
+        "style": "solid",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "tools-to-files",
+      "fromNode": "tool-executor",
+      "toNode": "file-manager",
+      "text": "file ops",
+      "vv": {
+        "edgeType": "Controls",
+        "style": "solid",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "tools-to-browser",
+      "fromNode": "tool-executor",
+      "toNode": "browser-session",
+      "text": "browser ops",
+      "vv": {
+        "edgeType": "Controls",
+        "style": "solid",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "tools-to-terminal",
+      "fromNode": "tool-executor",
+      "toNode": "terminal",
+      "text": "commands",
+      "vv": {
+        "edgeType": "Controls",
+        "style": "solid",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "core-to-mcp-server",
+      "fromNode": "core",
+      "toNode": "mcp-server",
+      "text": "MCP API",
+      "vv": {
+        "edgeType": "APICall",
+        "style": "solid",
+        "color": "#a855f7"
+      }
+    },
+    {
+      "id": "webview-to-mcp-client",
+      "fromNode": "webview",
+      "toNode": "mcp-client",
+      "text": "connects",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "extension-to-account",
+      "fromNode": "extension",
+      "toNode": "account-service",
+      "text": "auth",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "extension-to-telemetry",
+      "fromNode": "extension",
+      "toNode": "telemetry-service",
+      "text": "analytics",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "extension-to-error",
+      "fromNode": "extension",
+      "toNode": "error-service",
+      "text": "error handling",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "core-to-storage",
+      "fromNode": "core",
+      "toNode": "storage",
+      "text": "persists",
+      "vv": {
+        "edgeType": "WritesTo",
+        "style": "dashed",
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "core-to-state",
+      "fromNode": "core",
+      "toNode": "state-manager",
+      "text": "state",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "webview-to-state",
+      "fromNode": "webview",
+      "toNode": "state-manager",
+      "text": "reads state",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "account-to-github",
+      "fromNode": "account-service",
+      "toNode": "github",
+      "text": "GitHub auth",
+      "vv": {
+        "edgeType": "APICall",
+        "style": "solid",
+        "color": "#a855f7"
+      }
+    },
+    {
+      "id": "extension-to-vscode",
+      "fromNode": "extension",
+      "toNode": "vscode-api",
+      "text": "VS Code API",
+      "vv": {
+        "edgeType": "Uses",
+        "style": "dashed",
+        "color": "#eab308"
+      }
+    },
+    {
+      "id": "cli-to-standalone",
+      "fromNode": "cli",
+      "toNode": "standalone",
+      "text": "uses runtime",
+      "vv": {
+        "edgeType": "DependsOn",
+        "style": "solid",
+        "color": "#22c55e"
+      }
+    },
+    {
+      "id": "build-to-test",
+      "fromNode": "build-system",
+      "toNode": "test-framework",
+      "text": "runs tests",
+      "vv": {
+        "edgeType": "Triggers",
+        "style": "dotted",
+        "color": "#a855f7"
+      }
+    },
+    {
+      "id": "storage-read",
+      "fromNode": "storage",
+      "toNode": "core",
+      "text": "loads data",
+      "vv": {
+        "edgeType": "ReadsFrom",
+        "style": "dashed",
+        "color": "#06b6d4"
+      }
+    },
+    {
+      "id": "event-flow",
+      "fromNode": "webview",
+      "toNode": "core",
+      "text": "user events",
+      "vv": {
+        "edgeType": "EventFlow",
+        "style": "dotted",
+        "color": "#f97316"
+      }
+    },
+    {
+      "id": "message-response",
+      "fromNode": "core",
+      "toNode": "webview",
+      "text": "responses",
+      "vv": {
+        "edgeType": "MessageFlow",
+        "style": "solid",
+        "color": "#06b6d4"
+      }
+    }
+  ]
+}
