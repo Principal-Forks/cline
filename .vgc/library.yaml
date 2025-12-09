@@ -1,0 +1,209 @@
+version: "1.0.0"
+name: "Cline Architecture Library"
+
+nodeComponents:
+  # Core Components
+  Extension:
+    description: "VS Code extension entry point and main controller"
+    icon: "Code"
+    color: "#22c55e"
+    
+  Core:
+    description: "Core business logic and task management"
+    icon: "Cpu"
+    color: "#22c55e"
+    
+  WebView:
+    description: "React-based UI for chat interface"
+    icon: "Monitor"
+    color: "#06b6d4"
+    
+  # Communication Layer
+  GRPC:
+    description: "gRPC communication protocol between extension and webview"
+    icon: "Network"
+    color: "#f97316"
+    
+  Proto:
+    description: "Protocol buffer definitions for message types"
+    icon: "FileText"
+    color: "#eab308"
+    
+  # AI/Model Integration
+  ModelProvider:
+    description: "AI model provider abstraction layer"
+    icon: "Bot"
+    color: "#a855f7"
+    
+  Anthropic:
+    description: "Anthropic Claude integration"
+    icon: "Brain"
+    color: "#a855f7"
+    
+  OpenAI:
+    description: "OpenAI GPT integration"
+    icon: "Zap"
+    color: "#a855f7"
+    
+  Gemini:
+    description: "Google Gemini integration"
+    icon: "Sparkles"
+    color: "#a855f7"
+    
+  # Tool System
+  ToolExecutor:
+    description: "Executes various tools (file operations, browser, etc.)"
+    icon: "Wrench"
+    color: "#ef4444"
+    
+  FileManager:
+    description: "File system operations and management"
+    icon: "Folder"
+    color: "#ef4444"
+    
+  BrowserSession:
+    description: "Browser automation and web interaction"
+    icon: "Globe"
+    color: "#ef4444"
+    
+  Terminal:
+    description: "Command execution and terminal operations"
+    icon: "Terminal"
+    color: "#ef4444"
+    
+  # MCP Integration
+  MCPServer:
+    description: "Model Context Protocol server integration"
+    icon: "Server"
+    color: "#eab308"
+    
+  MCPClient:
+    description: "MCP client for external tool connections"
+    icon: "Plug"
+    color: "#eab308"
+    
+  # Services
+  AccountService:
+    description: "User account and authentication management"
+    icon: "User"
+    color: "#f97316"
+    
+  TelemetryService:
+    description: "Usage analytics and monitoring"
+    icon: "BarChart3"
+    color: "#f97316"
+    
+  ErrorService:
+    description: "Error handling and reporting"
+    icon: "AlertTriangle"
+    color: "#ef4444"
+    
+  BrowserService:
+    description: "Browser session management"
+    icon: "Globe"
+    color: "#f97316"
+    
+  LoggingService:
+    description: "Application logging"
+    icon: "FileText"
+    color: "#eab308"
+    
+  # Storage & State
+  Storage:
+    description: "Local data persistence"
+    icon: "Database"
+    color: "#22c55e"
+    
+  StateManager:
+    description: "Application state management"
+    icon: "Layers"
+    color: "#22c55e"
+    
+  # External Integrations
+  GitHub:
+    description: "GitHub integration for repositories"
+    icon: "Github"
+    color: "#06b6d4"
+    
+  VSCodeAPI:
+    description: "VS Code extension API"
+    icon: "Code2"
+    color: "#06b6d4"
+    
+  # Build & Development
+  BuildSystem:
+    description: "Build and compilation system"
+    icon: "Hammer"
+    color: "#eab308"
+    
+  TestFramework:
+    description: "Testing infrastructure"
+    icon: "CheckCircle"
+    color: "#22c55e"
+    
+  # CLI Components
+  CLI:
+    description: "Command line interface"
+    icon: "Terminal"
+    color: "#06b6d4"
+    
+  Standalone:
+    description: "Standalone runtime environment"
+    icon: "Package"
+    color: "#06b6d4"
+
+edgeComponents:
+  # Communication flows
+  GRPCConnection:
+    description: "gRPC message passing"
+    style: "solid"
+    color: "#f97316"
+    
+  MessageFlow:
+    description: "Data/message flow"
+    style: "solid"
+    color: "#06b6d4"
+    
+  # Dependencies
+  DependsOn:
+    description: "Component dependency"
+    style: "solid"
+    color: "#22c55e"
+    
+  Uses:
+    description: "Uses/Utilizes relationship"
+    style: "dashed"
+    color: "#eab308"
+    
+  # Control flow
+  Controls:
+    description: "Controls or manages"
+    style: "solid"
+    color: "#ef4444"
+    
+  Triggers:
+    description: "Triggers or initiates"
+    style: "dotted"
+    color: "#a855f7"
+    
+  # Data flow
+  ReadsFrom:
+    description: "Reads data from"
+    style: "dashed"
+    color: "#06b6d4"
+    
+  WritesTo:
+    description: "Writes data to"
+    style: "dashed"
+    color: "#ef4444"
+    
+  # API relationships
+  APICall:
+    description: "API call/interface"
+    style: "solid"
+    color: "#a855f7"
+    
+  EventFlow:
+    description: "Event-driven communication"
+    style: "dotted"
+    color: "#f97316"
