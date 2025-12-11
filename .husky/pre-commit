@@ -1,1 +1,4 @@
 lint-staged
+
+# Run principal view linting
+privu lint --quiet
