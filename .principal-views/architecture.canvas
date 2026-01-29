@@ -136,52 +136,42 @@
     },
     "edgeTypes": {
       "GRPCConnection": {
-        "label": "gRPC message passing",
         "style": "solid",
         "color": "#f97316"
       },
       "MessageFlow": {
-        "label": "Data/message flow",
         "style": "solid",
         "color": "#06b6d4"
       },
       "DependsOn": {
-        "label": "Component dependency",
         "style": "solid",
         "color": "#22c55e"
       },
       "Uses": {
-        "label": "Uses/Utilizes relationship",
         "style": "dashed",
         "color": "#eab308"
       },
       "Controls": {
-        "label": "Controls or manages",
         "style": "solid",
         "color": "#ef4444"
       },
       "Triggers": {
-        "label": "Triggers or initiates",
         "style": "dotted",
         "color": "#a855f7"
       },
       "ReadsFrom": {
-        "label": "Reads data from",
         "style": "dashed",
         "color": "#06b6d4"
       },
       "WritesTo": {
-        "label": "Writes data to",
         "style": "dashed",
         "color": "#ef4444"
       },
       "APICall": {
-        "label": "API call/interface",
         "style": "solid",
         "color": "#a855f7"
       },
       "EventFlow": {
-        "label": "Event-driven communication",
         "style": "dotted",
         "color": "#f97316"
       }
@@ -193,263 +183,373 @@
       "type": "text",
       "x": 1990,
       "y": 95,
-      "width": 147,
+      "width": 120,
       "height": 60,
+      "color": 4,
       "text": "VS Code Extension",
       "pv": {
-        "nodeType": "Extension"
+        "nodeType": "Extension",
+        "shape": "rectangle",
+        "fill": "#22c55e",
+        "stroke": "#16a34a",
+        "icon": "Code"
       }
     },
     {
       "id": "core",
       "type": "text",
-      "x": 1986,
-      "y": 599,
-      "width": 148,
+      "x": 2790,
+      "y": 395,
+      "width": 120,
       "height": 60,
+      "color": 4,
       "text": "Core Controller",
       "pv": {
-        "nodeType": "Core"
+        "nodeType": "Core",
+        "shape": "rectangle",
+        "fill": "#22c55e",
+        "stroke": "#16a34a",
+        "icon": "Cpu"
       }
     },
     {
       "id": "webview",
       "type": "text",
-      "x": 1245,
-      "y": 835,
-      "width": 109,
+      "x": 110,
+      "y": 995,
+      "width": 80,
       "height": 60,
+      "color": 5,
       "text": "Chat UI",
       "pv": {
-        "nodeType": "WebView"
+        "nodeType": "WebView",
+        "shape": "rectangle",
+        "fill": "#06b6d4",
+        "stroke": "#0891b2",
+        "icon": "Monitor"
       }
     },
     {
       "id": "grpc",
       "type": "text",
-      "x": 1535,
-      "y": 601,
-      "width": 126,
+      "x": 1110,
+      "y": 695,
+      "width": 80,
       "height": 60,
+      "color": 2,
       "text": "gRPC Layer",
       "pv": {
-        "nodeType": "GRPC"
+        "nodeType": "GRPC",
+        "shape": "rectangle",
+        "fill": "#f97316",
+        "stroke": "#ea580c",
+        "icon": "Network"
       }
     },
     {
       "id": "proto",
       "type": "text",
-      "x": 1485,
-      "y": 690,
-      "width": 156,
+      "x": 500,
+      "y": 995,
+      "width": 100,
       "height": 60,
+      "color": 3,
       "text": "Protocol Buffers",
       "pv": {
-        "nodeType": "Proto"
+        "nodeType": "Proto",
+        "shape": "rectangle",
+        "fill": "#eab308",
+        "stroke": "#ca8a04",
+        "icon": "FileText"
       }
     },
     {
       "id": "model-provider",
       "type": "text",
-      "x": 2299,
-      "y": 709,
-      "width": 136,
+      "x": 2900,
+      "y": 695,
+      "width": 100,
       "height": 60,
+      "color": 6,
       "text": "Model Provider",
       "pv": {
-        "nodeType": "ModelProvider"
+        "nodeType": "ModelProvider",
+        "shape": "rectangle",
+        "fill": "#a855f7",
+        "stroke": "#9333ea",
+        "icon": "Bot"
       }
     },
     {
       "id": "anthropic",
       "type": "text",
-      "x": 2568,
-      "y": 601,
-      "width": 82,
+      "x": 3120,
+      "y": 995,
+      "width": 60,
       "height": 60,
+      "color": 6,
       "text": "Claude",
       "pv": {
-        "nodeType": "Anthropic"
+        "nodeType": "Anthropic",
+        "shape": "rectangle",
+        "fill": "#a855f7",
+        "stroke": "#9333ea",
+        "icon": "Brain"
       }
     },
     {
       "id": "openai",
       "type": "text",
-      "x": 2568,
-      "y": 709,
-      "width": 83,
+      "x": 2720,
+      "y": 995,
+      "width": 60,
       "height": 60,
+      "color": 6,
       "text": "GPT",
       "pv": {
-        "nodeType": "OpenAI"
+        "nodeType": "OpenAI",
+        "shape": "rectangle",
+        "fill": "#a855f7",
+        "stroke": "#9333ea",
+        "icon": "Zap"
       }
     },
     {
       "id": "gemini",
       "type": "text",
-      "x": 2569,
-      "y": 816,
-      "width": 85,
+      "x": 2320,
+      "y": 995,
+      "width": 60,
       "height": 60,
+      "color": 6,
       "text": "Gemini",
       "pv": {
-        "nodeType": "Gemini"
+        "nodeType": "Gemini",
+        "shape": "rectangle",
+        "fill": "#a855f7",
+        "stroke": "#9333ea",
+        "icon": "Sparkles"
       }
     },
     {
       "id": "tool-executor",
       "type": "text",
-      "x": 2133,
-      "y": 831,
-      "width": 132,
+      "x": 2500,
+      "y": 695,
+      "width": 100,
       "height": 60,
+      "color": 1,
       "text": "Tool Executor",
       "pv": {
-        "nodeType": "ToolExecutor"
+        "nodeType": "ToolExecutor",
+        "shape": "rectangle",
+        "fill": "#ef4444",
+        "stroke": "#dc2626",
+        "icon": "Wrench"
       }
     },
     {
       "id": "file-manager",
       "type": "text",
-      "x": 2333,
-      "y": 972,
-      "width": 123,
+      "x": 1905,
+      "y": 995,
+      "width": 90,
       "height": 60,
+      "color": 1,
       "text": "File Manager",
       "pv": {
-        "nodeType": "FileManager"
+        "nodeType": "FileManager",
+        "shape": "rectangle",
+        "fill": "#ef4444",
+        "stroke": "#dc2626",
+        "icon": "Folder"
       }
     },
     {
       "id": "browser-session",
       "type": "text",
-      "x": 2122,
-      "y": 972,
-      "width": 154,
+      "x": 1500,
+      "y": 995,
+      "width": 100,
       "height": 60,
+      "color": 1,
       "text": "Browser Session",
       "pv": {
-        "nodeType": "BrowserSession"
+        "nodeType": "BrowserSession",
+        "shape": "rectangle",
+        "fill": "#ef4444",
+        "stroke": "#dc2626",
+        "icon": "Globe"
       }
     },
     {
       "id": "terminal",
       "type": "text",
-      "x": 1967,
-      "y": 972,
-      "width": 104,
+      "x": 1115,
+      "y": 995,
+      "width": 70,
       "height": 60,
+      "color": 1,
       "text": "Terminal",
       "pv": {
-        "nodeType": "Terminal"
+        "nodeType": "Terminal",
+        "shape": "rectangle",
+        "fill": "#ef4444",
+        "stroke": "#dc2626",
+        "icon": "Terminal"
       }
     },
     {
       "id": "mcp-server",
       "type": "text",
-      "x": 2310,
-      "y": 554,
-      "width": 120,
+      "x": 2110,
+      "y": 695,
+      "width": 80,
       "height": 60,
+      "color": 3,
       "text": "MCP Server",
       "pv": {
-        "nodeType": "MCPServer"
+        "nodeType": "MCPServer",
+        "shape": "rectangle",
+        "fill": "#eab308",
+        "stroke": "#ca8a04",
+        "icon": "Server"
       }
     },
     {
       "id": "mcp-client",
       "type": "text",
-      "x": 1243,
-      "y": 968,
-      "width": 115,
-      "height": 81,
+      "x": 1410,
+      "y": 1295,
+      "width": 80,
+      "height": 60,
+      "color": 3,
       "text": "MCP Client",
       "pv": {
-        "nodeType": "MCPClient"
+        "nodeType": "MCPClient",
+        "shape": "rectangle",
+        "fill": "#eab308",
+        "stroke": "#ca8a04",
+        "icon": "Plug"
       }
     },
     {
       "id": "account-service",
       "type": "text",
-      "x": 2271,
-      "y": 312,
-      "width": 146,
+      "x": 2400,
+      "y": 395,
+      "width": 100,
       "height": 60,
+      "color": 2,
       "text": "Account Service",
       "pv": {
-        "nodeType": "AccountService"
+        "nodeType": "AccountService",
+        "shape": "rectangle",
+        "fill": "#f97316",
+        "stroke": "#ea580c",
+        "icon": "User"
       }
     },
     {
       "id": "telemetry-service",
       "type": "text",
-      "x": 2120,
-      "y": 314,
-      "width": 98,
+      "x": 2015,
+      "y": 395,
+      "width": 70,
       "height": 60,
+      "color": 2,
       "text": "Telemetry",
       "pv": {
-        "nodeType": "TelemetryService"
+        "nodeType": "TelemetryService",
+        "shape": "rectangle",
+        "fill": "#f97316",
+        "stroke": "#ea580c",
+        "icon": "BarChart3"
       }
     },
     {
       "id": "error-service",
       "type": "text",
-      "x": 1879,
-      "y": 310,
-      "width": 134,
+      "x": 1605,
+      "y": 395,
+      "width": 90,
       "height": 60,
+      "color": 1,
       "text": "Error Service",
       "pv": {
-        "nodeType": "ErrorService"
+        "nodeType": "ErrorService",
+        "shape": "rectangle",
+        "fill": "#ef4444",
+        "stroke": "#dc2626",
+        "icon": "AlertTriangle"
       }
     },
     {
       "id": "storage",
       "type": "text",
-      "x": 1788,
-      "y": 489,
-      "width": 91,
+      "x": 1720,
+      "y": 695,
+      "width": 60,
       "height": 60,
+      "color": 4,
       "text": "Storage",
       "pv": {
-        "nodeType": "Storage"
+        "nodeType": "Storage",
+        "shape": "rectangle",
+        "fill": "#22c55e",
+        "stroke": "#16a34a",
+        "icon": "Database"
       }
     },
     {
       "id": "state-manager",
       "type": "text",
-      "x": 1841,
-      "y": 833,
-      "width": 136,
+      "x": 1800,
+      "y": 1295,
+      "width": 100,
       "height": 60,
+      "color": 4,
       "text": "State Manager",
       "pv": {
-        "nodeType": "StateManager"
+        "nodeType": "StateManager",
+        "shape": "rectangle",
+        "fill": "#22c55e",
+        "stroke": "#16a34a",
+        "icon": "Layers"
       }
     },
     {
       "id": "github",
       "type": "text",
-      "x": 2473,
-      "y": 312,
-      "width": 121,
+      "x": 320,
+      "y": 695,
+      "width": 60,
       "height": 60,
+      "color": 5,
       "text": "GitHub",
       "pv": {
-        "nodeType": "GitHub"
+        "nodeType": "GitHub",
+        "shape": "rectangle",
+        "fill": "#06b6d4",
+        "stroke": "#0891b2",
+        "icon": "Github"
       }
     },
     {
       "id": "vscode-api",
       "type": "text",
-      "x": 1717,
-      "y": 310,
-      "width": 121,
+      "x": 1205,
+      "y": 395,
+      "width": 90,
       "height": 60,
+      "color": 5,
       "text": "VS Code API",
       "pv": {
-        "nodeType": "VSCodeAPI"
+        "nodeType": "VSCodeAPI",
+        "shape": "rectangle",
+        "fill": "#06b6d4",
+        "stroke": "#0891b2",
+        "icon": "Code2"
       }
     },
     {
@@ -457,47 +557,67 @@
       "type": "text",
       "x": 1230,
       "y": 95,
-      "width": 73,
+      "width": 40,
       "height": 60,
+      "color": 5,
       "text": "CLI",
       "pv": {
-        "nodeType": "CLI"
+        "nodeType": "CLI",
+        "shape": "rectangle",
+        "fill": "#06b6d4",
+        "stroke": "#0891b2",
+        "icon": "Terminal"
       }
     },
     {
       "id": "standalone",
       "type": "text",
-      "x": 1177,
-      "y": 306,
-      "width": 183,
+      "x": 395,
+      "y": 395,
+      "width": 110,
       "height": 60,
+      "color": 5,
       "text": "Standalone Runtime",
       "pv": {
-        "nodeType": "Standalone"
+        "nodeType": "Standalone",
+        "shape": "rectangle",
+        "fill": "#06b6d4",
+        "stroke": "#0891b2",
+        "icon": "Package"
       }
     },
     {
       "id": "build-system",
       "type": "text",
-      "x": 1545,
-      "y": 153,
-      "width": 135,
+      "x": 1605,
+      "y": 95,
+      "width": 90,
       "height": 60,
+      "color": 3,
       "text": "Build System",
       "pv": {
-        "nodeType": "BuildSystem"
+        "nodeType": "BuildSystem",
+        "shape": "rectangle",
+        "fill": "#eab308",
+        "stroke": "#ca8a04",
+        "icon": "Hammer"
       }
     },
     {
       "id": "test-framework",
       "type": "text",
-      "x": 1544,
-      "y": 306,
-      "width": 139,
+      "x": 800,
+      "y": 395,
+      "width": 100,
       "height": 60,
+      "color": 4,
       "text": "Test Framework",
       "pv": {
-        "nodeType": "TestFramework"
+        "nodeType": "TestFramework",
+        "shape": "rectangle",
+        "fill": "#22c55e",
+        "stroke": "#16a34a",
+        "icon": "CheckCircle"
       }
     }
   ],
@@ -506,8 +626,8 @@
       "id": "ext-to-core",
       "fromNode": "extension",
       "toNode": "core",
-      "fromSide": "bottom",
-      "toSide": "top",
+      "fromSide": "right",
+      "toSide": "left",
       "label": "manages",
       "pv": {
         "edgeType": "Controls"
@@ -547,6 +667,61 @@
       }
     },
     {
+      "id": "core-to-models",
+      "fromNode": "core",
+      "toNode": "model-provider",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "AI requests",
+      "pv": {
+        "edgeType": "APICall"
+      }
+    },
+    {
+      "id": "model-to-anthropic",
+      "fromNode": "model-provider",
+      "toNode": "anthropic",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "integrates",
+      "pv": {
+        "edgeType": "Uses"
+      }
+    },
+    {
+      "id": "model-to-openai",
+      "fromNode": "model-provider",
+      "toNode": "openai",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "integrates",
+      "pv": {
+        "edgeType": "Uses"
+      }
+    },
+    {
+      "id": "model-to-gemini",
+      "fromNode": "model-provider",
+      "toNode": "gemini",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "integrates",
+      "pv": {
+        "edgeType": "Uses"
+      }
+    },
+    {
+      "id": "core-to-tools",
+      "fromNode": "core",
+      "toNode": "tool-executor",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "executes",
+      "pv": {
+        "edgeType": "Controls"
+      }
+    },
+    {
       "id": "tools-to-files",
       "fromNode": "tool-executor",
       "toNode": "file-manager",
@@ -580,11 +755,33 @@
       }
     },
     {
+      "id": "core-to-mcp-server",
+      "fromNode": "core",
+      "toNode": "mcp-server",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "MCP API",
+      "pv": {
+        "edgeType": "APICall"
+      }
+    },
+    {
+      "id": "webview-to-mcp-client",
+      "fromNode": "webview",
+      "toNode": "mcp-client",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "label": "connects",
+      "pv": {
+        "edgeType": "Uses"
+      }
+    },
+    {
       "id": "extension-to-account",
       "fromNode": "extension",
       "toNode": "account-service",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "left",
       "label": "auth",
       "pv": {
         "edgeType": "Uses"
@@ -595,7 +792,7 @@
       "fromNode": "extension",
       "toNode": "telemetry-service",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "right",
       "label": "analytics",
       "pv": {
         "edgeType": "Uses"
@@ -606,7 +803,7 @@
       "fromNode": "extension",
       "toNode": "error-service",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "right",
       "label": "error handling",
       "pv": {
         "edgeType": "Uses"
@@ -616,18 +813,29 @@
       "id": "core-to-storage",
       "fromNode": "core",
       "toNode": "storage",
-      "fromSide": "left",
-      "toSide": "right",
+      "fromSide": "bottom",
+      "toSide": "top",
       "label": "persists",
       "pv": {
         "edgeType": "WritesTo"
       }
     },
     {
+      "id": "core-to-state",
+      "fromNode": "core",
+      "toNode": "state-manager",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "state",
+      "pv": {
+        "edgeType": "Uses"
+      }
+    },
+    {
       "id": "webview-to-state",
       "fromNode": "webview",
       "toNode": "state-manager",
-      "fromSide": "right",
+      "fromSide": "bottom",
       "toSide": "left",
       "label": "reads state",
       "pv": {
@@ -635,11 +843,22 @@
       }
     },
     {
+      "id": "account-to-github",
+      "fromNode": "account-service",
+      "toNode": "github",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "GitHub auth",
+      "pv": {
+        "edgeType": "APICall"
+      }
+    },
+    {
       "id": "extension-to-vscode",
       "fromNode": "extension",
       "toNode": "vscode-api",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "right",
       "label": "VS Code API",
       "pv": {
         "edgeType": "Uses"
@@ -650,7 +869,7 @@
       "fromNode": "cli",
       "toNode": "standalone",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "right",
       "label": "uses runtime",
       "pv": {
         "edgeType": "DependsOn"
@@ -661,7 +880,7 @@
       "fromNode": "build-system",
       "toNode": "test-framework",
       "fromSide": "bottom",
-      "toSide": "top",
+      "toSide": "right",
       "label": "runs tests",
       "pv": {
         "edgeType": "Triggers"
@@ -671,8 +890,8 @@
       "id": "storage-read",
       "fromNode": "storage",
       "toNode": "core",
-      "fromSide": "right",
-      "toSide": "left",
+      "fromSide": "top",
+      "toSide": "bottom",
       "label": "loads data",
       "pv": {
         "edgeType": "ReadsFrom"
@@ -682,7 +901,7 @@
       "id": "event-flow",
       "fromNode": "webview",
       "toNode": "core",
-      "fromSide": "right",
+      "fromSide": "top",
       "toSide": "left",
       "label": "user events",
       "pv": {
@@ -698,96 +917,6 @@
       "label": "responses",
       "pv": {
         "edgeType": "MessageFlow"
-      }
-    },
-    {
-      "id": "edge-account-service-github-1766875213075",
-      "fromNode": "account-service",
-      "toNode": "github",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "APICall"
-      }
-    },
-    {
-      "id": "edge-core-state-manager-1766875213076",
-      "fromNode": "core",
-      "toNode": "state-manager",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "pv": {
-        "edgeType": "Uses"
-      }
-    },
-    {
-      "id": "edge-core-mcp-server-1766875213076",
-      "fromNode": "core",
-      "toNode": "mcp-server",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "APICall"
-      }
-    },
-    {
-      "id": "edge-core-tool-executor-1766875213076",
-      "fromNode": "core",
-      "toNode": "tool-executor",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "pv": {
-        "edgeType": "Controls"
-      }
-    },
-    {
-      "id": "edge-core-model-provider-1766875213076",
-      "fromNode": "core",
-      "toNode": "model-provider",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "APICall"
-      }
-    },
-    {
-      "id": "edge-model-provider-gemini-1766875213076",
-      "fromNode": "model-provider",
-      "toNode": "gemini",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "Uses"
-      }
-    },
-    {
-      "id": "edge-model-provider-openai-1766875213076",
-      "fromNode": "model-provider",
-      "toNode": "openai",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "Uses"
-      }
-    },
-    {
-      "id": "edge-model-provider-anthropic-1766875213076",
-      "fromNode": "model-provider",
-      "toNode": "anthropic",
-      "fromSide": "right",
-      "toSide": "left",
-      "pv": {
-        "edgeType": "Uses"
-      }
-    },
-    {
-      "id": "edge-webview-mcp-client-1766875357486",
-      "fromNode": "webview",
-      "toNode": "mcp-client",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "pv": {
-        "edgeType": "Uses"
       }
     }
   ]
