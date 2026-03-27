@@ -65,10 +65,17 @@ import {
 	sapAiCoreModels,
 	vertexDefaultModelId,
 	vertexModels,
+	wandbDefaultModelId,
+	wandbModels,
 	xaiDefaultModelId,
 	xaiModels,
 } from "@shared/api"
 import { Mode } from "@shared/storage/types"
+import * as reasoningSupport from "@shared/utils/reasoning-support"
+
+export function supportsReasoningEffortForModelId(modelId?: string, _allowShortOpenAiIds = false): boolean {
+	return reasoningSupport.supportsReasoningEffortForModel(modelId)
+}
 
 /**
  * Returns the static model list for a provider.
@@ -113,6 +120,8 @@ export function getModelsForProvider(
 			return moonshotModels
 		case "nebius":
 			return nebiusModels
+		case "wandb":
+			return wandbModels
 		case "sambanova":
 			return sambanovaModels
 		case "cerebras":
@@ -265,18 +274,24 @@ export function normalizeApiConfiguration(
 				selectedModelInfo: requestyModelInfo || requestyDefaultModelInfo,
 			}
 		case "cline":
-			const clineOpenRouterModelId =
-				(currentMode === "plan"
-					? apiConfiguration?.planModeOpenRouterModelId
-					: apiConfiguration?.actModeOpenRouterModelId) || openRouterDefaultModelId
-			const clineOpenRouterModelInfo =
-				(currentMode === "plan"
+			const fallbackOpenRouterModelId =
+				currentMode === "plan" ? apiConfiguration?.planModeOpenRouterModelId : apiConfiguration?.actModeOpenRouterModelId
+			const fallbackOpenRouterModelInfo =
+				currentMode === "plan"
 					? apiConfiguration?.planModeOpenRouterModelInfo
-					: apiConfiguration?.actModeOpenRouterModelInfo) || openRouterDefaultModelInfo
+					: apiConfiguration?.actModeOpenRouterModelInfo
+			const clineModelId =
+				(currentMode === "plan" ? apiConfiguration?.planModeClineModelId : apiConfiguration?.actModeClineModelId) ||
+				fallbackOpenRouterModelId ||
+				openRouterDefaultModelId
+			const clineModelInfo =
+				(currentMode === "plan" ? apiConfiguration?.planModeClineModelInfo : apiConfiguration?.actModeClineModelInfo) ||
+				fallbackOpenRouterModelInfo ||
+				openRouterDefaultModelInfo
 			return {
 				selectedProvider: provider,
-				selectedModelId: clineOpenRouterModelId,
-				selectedModelInfo: clineOpenRouterModelInfo,
+				selectedModelId: clineModelId,
+				selectedModelInfo: clineModelInfo,
 			}
 		case "openai":
 			const openAiModelId =
@@ -362,6 +377,8 @@ export function normalizeApiConfiguration(
 			}
 		case "nebius":
 			return getProviderData(nebiusModels, nebiusDefaultModelId)
+		case "wandb":
+			return getProviderData(wandbModels, wandbDefaultModelId)
 		case "sambanova":
 			return getProviderData(sambanovaModels, sambanovaDefaultModelId)
 		case "cerebras":
@@ -514,6 +531,7 @@ export function getModeSpecificFields(apiConfiguration: ApiConfiguration | undef
 			requestyModelId: undefined,
 			openAiModelId: undefined,
 			openRouterModelId: undefined,
+			clineModelId: undefined,
 			groqModelId: undefined,
 			basetenModelId: undefined,
 			huggingFaceModelId: undefined,
@@ -527,6 +545,7 @@ export function getModeSpecificFields(apiConfiguration: ApiConfiguration | undef
 			openAiModelInfo: undefined,
 			liteLlmModelInfo: undefined,
 			openRouterModelInfo: undefined,
+			clineModelInfo: undefined,
 			requestyModelInfo: undefined,
 			groqModelInfo: undefined,
 			basetenModelInfo: undefined,
@@ -547,6 +566,18 @@ export function getModeSpecificFields(apiConfiguration: ApiConfiguration | undef
 		}
 	}
 
+	const openRouterModelId =
+		mode === "plan" ? apiConfiguration.planModeOpenRouterModelId : apiConfiguration.actModeOpenRouterModelId
+	const openRouterModelInfo =
+		mode === "plan" ? apiConfiguration.planModeOpenRouterModelInfo : apiConfiguration.actModeOpenRouterModelInfo
+
+	// Backward compatibility: Cline previously stored model selection in OpenRouter keys.
+	const clineModelId =
+		(mode === "plan" ? apiConfiguration.planModeClineModelId : apiConfiguration.actModeClineModelId) || openRouterModelId
+	const clineModelInfo =
+		(mode === "plan" ? apiConfiguration.planModeClineModelInfo : apiConfiguration.actModeClineModelInfo) ||
+		openRouterModelInfo
+
 	return {
 		// Core fields
 		apiProvider: mode === "plan" ? apiConfiguration.planModeApiProvider : apiConfiguration.actModeApiProvider,
@@ -560,8 +591,8 @@ export function getModeSpecificFields(apiConfiguration: ApiConfiguration | undef
 		liteLlmModelId: mode === "plan" ? apiConfiguration.planModeLiteLlmModelId : apiConfiguration.actModeLiteLlmModelId,
 		requestyModelId: mode === "plan" ? apiConfiguration.planModeRequestyModelId : apiConfiguration.actModeRequestyModelId,
 		openAiModelId: mode === "plan" ? apiConfiguration.planModeOpenAiModelId : apiConfiguration.actModeOpenAiModelId,
-		openRouterModelId:
-			mode === "plan" ? apiConfiguration.planModeOpenRouterModelId : apiConfiguration.actModeOpenRouterModelId,
+		openRouterModelId,
+		clineModelId,
 		groqModelId: mode === "plan" ? apiConfiguration.planModeGroqModelId : apiConfiguration.actModeGroqModelId,
 		basetenModelId: mode === "plan" ? apiConfiguration.planModeBasetenModelId : apiConfiguration.actModeBasetenModelId,
 		huggingFaceModelId:
@@ -579,8 +610,8 @@ export function getModeSpecificFields(apiConfiguration: ApiConfiguration | undef
 		// Model info objects
 		openAiModelInfo: mode === "plan" ? apiConfiguration.planModeOpenAiModelInfo : apiConfiguration.actModeOpenAiModelInfo,
 		liteLlmModelInfo: mode === "plan" ? apiConfiguration.planModeLiteLlmModelInfo : apiConfiguration.actModeLiteLlmModelInfo,
-		openRouterModelInfo:
-			mode === "plan" ? apiConfiguration.planModeOpenRouterModelInfo : apiConfiguration.actModeOpenRouterModelInfo,
+		openRouterModelInfo,
+		clineModelInfo,
 		requestyModelInfo:
 			mode === "plan" ? apiConfiguration.planModeRequestyModelInfo : apiConfiguration.actModeRequestyModelInfo,
 		groqModelInfo: mode === "plan" ? apiConfiguration.planModeGroqModelInfo : apiConfiguration.actModeGroqModelInfo,
@@ -656,11 +687,17 @@ export async function syncModeConfigurations(
 	// Handle provider-specific fields
 	switch (apiProvider) {
 		case "openrouter":
-		case "cline":
 			updates.planModeOpenRouterModelId = sourceFields.openRouterModelId
 			updates.actModeOpenRouterModelId = sourceFields.openRouterModelId
 			updates.planModeOpenRouterModelInfo = sourceFields.openRouterModelInfo
 			updates.actModeOpenRouterModelInfo = sourceFields.openRouterModelInfo
+			break
+
+		case "cline":
+			updates.planModeClineModelId = sourceFields.clineModelId
+			updates.actModeClineModelId = sourceFields.clineModelId
+			updates.planModeClineModelInfo = sourceFields.clineModelInfo
+			updates.actModeClineModelInfo = sourceFields.clineModelInfo
 			break
 
 		case "requesty":
@@ -796,6 +833,7 @@ export async function syncModeConfigurations(
 		case "asksage":
 		case "xai":
 		case "nebius":
+		case "wandb":
 		case "sambanova":
 		case "cerebras":
 		case "sapaicore":
@@ -811,29 +849,102 @@ export async function syncModeConfigurations(
 	await handleFieldsChange(updates)
 }
 
-/**
- * Filters OpenRouter model IDs based on provider-specific rules.
- * For Cline provider: excludes :free models (except Minimax models)
- * For OpenRouter/Vercel: excludes cline/ prefixed models
- * @param modelIds Array of model IDs to filter
- * @param provider The current API provider
- * @returns Filtered array of model IDs
- */
-export function filterOpenRouterModelIds(modelIds: string[], provider: ApiProvider): string[] {
-	if (provider === "cline") {
-		// For Cline provider: exclude :free models, but keep Minimax models
-		return modelIds.filter((id) => {
-			// Keep all Minimax and devstral models regardless of :free suffix
-			if (id.toLowerCase().includes("minimax-m2") || id.toLowerCase().includes("arcee-ai/trinity-large")) {
-				return true
-			}
-			// Filter out other :free models
-			return !id.includes(":free")
-		})
-	}
+export { filterOpenRouterModelIds } from "@shared/utils/model-filters"
 
-	// For OpenRouter and Vercel AI Gateway providers: exclude Cline-specific models
-	return modelIds.filter((id) => !id.startsWith("cline/"))
+// Helper to get provider-specific configuration info and empty state guidance
+export const getProviderInfo = (
+	provider: ApiProvider,
+	apiConfiguration: any,
+	effectiveMode: "plan" | "act",
+): { modelId?: string; baseUrl?: string; helpText: string } => {
+	switch (provider) {
+		case "baseten":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeBasetenModelId : apiConfiguration.actModeBasetenModelId,
+				baseUrl: apiConfiguration.basetenBaseUrl,
+				helpText: "Start Baseten and load a model to begin",
+			}
+		case "lmstudio":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeLmStudioModelId : apiConfiguration.actModeLmStudioModelId,
+				baseUrl: apiConfiguration.lmStudioBaseUrl,
+				helpText: "Start LM Studio and load a model to begin",
+			}
+		case "ollama":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeOllamaModelId : apiConfiguration.actModeOllamaModelId,
+				baseUrl: apiConfiguration.ollamaBaseUrl,
+				helpText: "Run `ollama serve` and pull a model",
+			}
+		case "litellm":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeLiteLlmModelId : apiConfiguration.actModeLiteLlmModelId,
+				baseUrl: apiConfiguration.liteLlmBaseUrl,
+				helpText: "Add your LiteLLM proxy URL in settings",
+			}
+		case "openai":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeOpenAiModelId : apiConfiguration.actModeOpenAiModelId,
+				baseUrl: apiConfiguration.openAiBaseUrl,
+				helpText: "Add your OpenAI API key and endpoint",
+			}
+		case "vscode-lm":
+			return {
+				modelId: undefined,
+				baseUrl: undefined,
+				helpText: "Select a VS Code language model from settings",
+			}
+		case "requesty":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeRequestyModelId : apiConfiguration.actModeRequestyModelId,
+				baseUrl: apiConfiguration.requestyBaseUrl,
+				helpText: "Add your Requesty API key in settings",
+			}
+		case "together":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeTogetherModelId : apiConfiguration.actModeTogetherModelId,
+				baseUrl: undefined,
+				helpText: "Add your Together AI API key in settings",
+			}
+		case "dify":
+			return {
+				modelId: undefined,
+				baseUrl: apiConfiguration.difyBaseUrl,
+				helpText: "Configure your Dify workflow URL and API key",
+			}
+		case "hicap":
+			return {
+				modelId: effectiveMode === "plan" ? apiConfiguration.planModeHicapModelId : apiConfiguration.actModeHicapModelId,
+				baseUrl: undefined,
+				helpText: "Add your HiCap API key in settings",
+			}
+		case "oca":
+			return {
+				modelId: effectiveMode === "plan" ? apiConfiguration.planModeOcaModelId : apiConfiguration.actModeOcaModelId,
+				baseUrl: apiConfiguration.ocaBaseUrl,
+				helpText: "Configure your OCA endpoint in settings",
+			}
+		case "aihubmix":
+			return {
+				modelId:
+					effectiveMode === "plan" ? apiConfiguration.planModeAihubmixModelId : apiConfiguration.actModeAihubmixModelId,
+				baseUrl: apiConfiguration.aihubmixBaseUrl,
+				helpText: "Add your AIHubMix API key in settings",
+			}
+		default:
+			return {
+				modelId: undefined,
+				baseUrl: undefined,
+				helpText: "Configure this provider in model settings",
+			}
+	}
 }
 
 // Helper to get provider-specific configuration info and empty state guidance
