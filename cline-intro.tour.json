@@ -1,0 +1,198 @@
+{
+  "id": "cline-codebase-intro",
+  "title": "Cline Codebase Tour",
+  "description": "A guided introduction to Cline — an autonomous AI coding agent that runs as a VS Code extension. Covers the entry point, core task engine, API providers, tool system, system prompts, communication layer, webview UI, and services.",
+  "version": "1.0.0",
+  "steps": [
+    {
+      "id": "overview",
+      "title": "Cline at a Glance",
+      "description": "Cline is an autonomous AI coding agent that runs as a VS Code extension. The codebase is organized into several top-level areas: the extension core, the React chat interface, the protocol definitions for communication, the standalone CLI, and an adapter layer for running outside VS Code.",
+      "colorMode": "fileTypes"
+    },
+    {
+      "id": "extension-entry",
+      "title": "Extension Entry Point",
+      "description": "Where the extension boots up. The highlighted files handle VS Code activation, shared initialization, and the dependency injection container that ties everything together.",
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "entry-files",
+          "name": "Entry Points",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "src/extension.ts", "type": "file" },
+            { "path": "src/common.ts", "type": "file" },
+            { "path": "src/registry.ts", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "core-task-engine",
+      "title": "The Task Engine",
+      "description": "The heart of Cline. When a user sends a message, a Task is created that manages the conversation loop — sending prompts to the AI, parsing responses, and executing tools. The highlighted files handle tool dispatch, lifecycle tracking, and streaming response processing.",
+      "focusDirectory": "src/core/task",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "task-core",
+          "name": "Core Task Files",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "src/core/task/index.ts", "type": "file" },
+            { "path": "src/core/task/ToolExecutor.ts", "type": "file" },
+            { "path": "src/core/task/TaskState.ts", "type": "file" },
+            { "path": "src/core/task/StreamResponseHandler.ts", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "tool-handlers",
+      "title": "Tool Handlers",
+      "description": "Cline's power comes from its tools — file editing, command execution, browser automation, web search, and more. Each tool has a dedicated handler that implements the actual operation when the AI decides to use it. The highlighted files cover the most commonly used tools.",
+      "focusDirectory": "src/core/task/tools/handlers",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "key-tools",
+          "name": "Key Tool Handlers",
+          "color": "#10b981",
+          "items": [
+            { "path": "src/core/task/tools/handlers/ExecuteCommandToolHandler.ts", "type": "file" },
+            { "path": "src/core/task/tools/handlers/WriteToFileToolHandler.ts", "type": "file" },
+            { "path": "src/core/task/tools/handlers/BrowserToolHandler.ts", "type": "file" },
+            { "path": "src/core/task/tools/handlers/ReadFileToolHandler.ts", "type": "file" },
+            { "path": "src/core/task/tools/handlers/WebSearchToolHandler.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "api-providers",
+      "title": "API Providers",
+      "description": "Cline supports over 30 AI providers. A central factory selects the right handler based on user configuration, and each provider implements the same interface — Anthropic, OpenAI, Gemini, Bedrock, Ollama, and many others.",
+      "focusDirectory": "src/core/api",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "api-layer",
+          "name": "API Layer",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "src/core/api/index.ts", "type": "file" },
+            { "path": "src/core/api/providers", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "system-prompts",
+      "title": "System Prompt Architecture",
+      "description": "The system prompt is modular. Reusable components define shared sections like rules and capabilities, while variant configs tailor the prompt to model families — next-gen, generic, and xs. Each variant can override components for optimal performance.",
+      "focusDirectory": "src/core/prompts/system-prompt",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "prompt-components",
+          "name": "Components",
+          "color": "#06b6d4",
+          "items": [
+            { "path": "src/core/prompts/system-prompt/components", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "prompt-variants",
+          "name": "Variants",
+          "color": "#f43f5e",
+          "items": [
+            { "path": "src/core/prompts/system-prompt/variants", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "grpc-proto",
+      "title": "gRPC Communication Layer",
+      "description": "The extension and webview communicate via a gRPC-like protocol over VS Code message passing. The highlighted directory contains the contract definitions, one per feature domain. These generate the typed service layer that both sides depend on.",
+      "focusDirectory": "proto",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "proto-files",
+          "name": "Proto Definitions",
+          "color": "#ec4899",
+          "items": [
+            { "path": "proto/cline", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "webview-ui",
+      "title": "Webview UI (React)",
+      "description": "The chat interface is a React application. The highlighted areas cover conversation rendering, provider configuration settings, and the state context that stays in sync with the extension backend. The webview communicates with the extension through the generated gRPC client.",
+      "focusDirectory": "webview-ui/src/components",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "ui-areas",
+          "name": "Key UI Areas",
+          "color": "#f97316",
+          "items": [
+            { "path": "webview-ui/src/components/chat", "type": "directory" },
+            { "path": "webview-ui/src/components/settings", "type": "directory" },
+            { "path": "webview-ui/src/context", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "title": "Services Layer",
+      "description": "Cross-cutting concerns are organized here — authentication, telemetry, feature flags, error handling, browser automation, and MCP server management. A sibling integrations directory handles external system integrations like terminals, editors, and checkpoints.",
+      "focusDirectory": "src/services",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "key-services",
+          "name": "Key Services",
+          "color": "#14b8a6",
+          "items": [
+            { "path": "src/services/auth", "type": "directory" },
+            { "path": "src/services/telemetry", "type": "directory" },
+            { "path": "src/services/mcp", "type": "directory" },
+            { "path": "src/services/browser", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "full-picture",
+      "title": "The Full Picture",
+      "description": "To recap the data flow: a user message travels from the **webview** through the **communication layer** to the **controller**, which creates a **task**. The task calls an **API provider**, the AI response is parsed, and **tools** are executed. Results stream back to the webview. The system prompt variants, services, and integrations all support this loop.",
+      "focusDirectory": "",
+      "colorMode": "fileTypes"
+    }
+  ]
+}
