@@ -1,7 +1,7 @@
 {
   "id": "cline-codebase-intro",
   "title": "Cline Codebase Tour",
-  "description": "A guided introduction to Cline — an autonomous AI coding agent that runs as a VS Code extension. Covers the entry point, core task engine, API providers, tool system, system prompts, communication layer, webview UI, and services.",
+  "description": "A guided introduction to Cline  - an autonomous AI coding agent that runs as a VS Code extension. Covers the entry point, core task engine, API providers, tool system, system prompts, communication layer, webview UI, and services.",
   "version": "1.0.0",
   "steps": [
     {
@@ -34,7 +34,7 @@
     {
       "id": "core-task-engine",
       "title": "The Task Engine",
-      "description": "The heart of Cline. When a user sends a message, a Task is created that manages the conversation loop — sending prompts to the AI, parsing responses, and executing tools. The highlighted files handle tool dispatch, lifecycle tracking, and streaming response processing.",
+      "description": "This is the heart of Cline, where each user message becomes a Task that manages the full conversation loop by sending prompts to the AI, parsing responses, and executing tools. The highlighted files handle tool dispatch, lifecycle tracking, and streaming response processing.",
       "focusDirectory": "src/core/task",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -56,7 +56,7 @@
     {
       "id": "tool-handlers",
       "title": "Tool Handlers",
-      "description": "Cline's power comes from its tools — file editing, command execution, browser automation, web search, and more. Each tool has a dedicated handler that implements the actual operation when the AI decides to use it. The highlighted files cover the most commonly used tools.",
+      "description": "Cline's power comes from its tools  - file editing, command execution, browser automation, web search, and more. Each tool has a dedicated handler that implements the actual operation when the AI decides to use it. The highlighted files cover the most commonly used tools.",
       "focusDirectory": "src/core/task/tools/handlers",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -79,7 +79,7 @@
     {
       "id": "api-providers",
       "title": "API Providers",
-      "description": "Cline supports over 30 AI providers. A central factory selects the right handler based on user configuration, and each provider implements the same interface — Anthropic, OpenAI, Gemini, Bedrock, Ollama, and many others.",
+      "description": "Cline supports over 30 AI providers. A central factory selects the right handler based on user configuration, and each provider implements the same interface  - Anthropic, OpenAI, Gemini, Bedrock, Ollama, and many others.",
       "focusDirectory": "src/core/api",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -99,7 +99,7 @@
     {
       "id": "system-prompts",
       "title": "System Prompt Architecture",
-      "description": "The system prompt is modular. Reusable components define shared sections like rules and capabilities, while variant configs tailor the prompt to model families — next-gen, generic, and xs. Each variant can override components for optimal performance.",
+      "description": "The system prompt is modular. Reusable components define shared sections like rules and capabilities, while variant configs tailor the prompt to model families  - next-gen, generic, and xs. Each variant can override components for optimal performance.",
       "focusDirectory": "src/core/prompts/system-prompt",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -168,7 +168,7 @@
     {
       "id": "services",
       "title": "Services Layer",
-      "description": "Cross-cutting concerns are organized here — authentication, telemetry, feature flags, error handling, browser automation, and MCP server management. A sibling integrations directory handles external system integrations like terminals, editors, and checkpoints.",
+      "description": "Cross-cutting concerns are organized here  - authentication, telemetry, feature flags, error handling, browser automation, and MCP server management. A sibling integrations directory handles external system integrations like terminals, editors, and checkpoints.",
       "focusDirectory": "src/services",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -190,7 +190,7 @@
     {
       "id": "full-picture",
       "title": "The Full Picture",
-      "description": "To recap the data flow: a user message travels from the **webview** through the **communication layer** to the **controller**, which creates a **task**. The task calls an **API provider**, the AI response is parsed, and **tools** are executed. Results stream back to the webview. The system prompt variants, services, and integrations all support this loop.",
+      "description": "To recap the data flow: a user message travels from the webview through the communication layer to the controller, which creates a task. The task calls an API provider, the AI response is parsed, and tools are executed. Results stream back to the webview.",
       "focusDirectory": "",
       "colorMode": "fileTypes"
     }
